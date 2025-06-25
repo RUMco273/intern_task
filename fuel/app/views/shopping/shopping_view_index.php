@@ -10,5 +10,6 @@
     <h1>ようこそ、私のアプリへ！</h1>
     <p>これは独自のトップページです。</p>
     <h1>ようこそ、<?php echo $username; ?>！</h1>
+    <?php   echo Assets::css('example.css')?>
 </body>
 </html>
