@@ -64,3 +64,12 @@ Dockerの基本的な概念については、以下のリンクを参考にし�
 - **パスワード**: `root`
 - **データベース名**: `RUM_DATA`
 
+## 作成したファイル
+
+- app/classes/model
+- app/classes/controller
+- app/config/config.php
+- app/migrations/001_create_tables.php
+- app/views/template.php
+- app/views/shoppingitem
+

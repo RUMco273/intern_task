@@ -1,14 +1,14 @@
 <?php
 
-
 use Fuel\Core\Controller_Template;
 use Fuel\Core\Input;
 use Fuel\Core\Response;
 use Fuel\Core\Session;
+use Fuel\Core\View;
 use Model\Category;
 use Model\Item;
 
-class Controller_Shoppingitem extends Controller_Template
+class Controller_ShoppingItem extends Controller_Template
 {
     public $template = 'template';
 
@@ -18,11 +18,25 @@ class Controller_Shoppingitem extends Controller_Template
         $this->template->categories = Category::get_all();
     }
 
-    public function action_index()
+    public function action_top()
     {
-        $data['items'] = Item::get_all();
-        $this->template->title = 'アイテム一覧';
-        $this->template->content = \View::forge('items/index', $data);
+        $data['items'] = Item::get_near_due(5);
+        $this->template->title = '期限が近いアイテム';
+        $this->template->content = View::forge('shoppingitem/top', $data);
+    }
+
+    public function action_category($id = null)
+    {
+        $data['category_name'] = '';
+        foreach ($this->template->categories as $cat) {
+            if ($cat['id'] == $id) {
+                $data['category_name'] = $cat['name'];
+                break;
+            }
+        }
+        $data['items'] = Item::get_by_category($id);
+        $this->template->title = $data['category_name'];
+        $this->template->content = View::forge('shoppingitem/category', $data);
     }
 
     public function action_create()
@@ -38,10 +52,10 @@ class Controller_Shoppingitem extends Controller_Template
                 'updated_at'  => date('Y-m-d H:i:s'),
             ));
             Session::set_flash('success', 'アイテムを追加しました');
-            return Response::redirect('items');
+            return Response::redirect('shoppingitem/top');
         }
         $this->template->title = 'アイテム追加';
-        $this->template->content = \View::forge('items/create');
+        $this->template->content = View::forge('shoppingitem/create');
     }
 
     public function action_edit($id = null)
@@ -49,7 +63,7 @@ class Controller_Shoppingitem extends Controller_Template
         $item = Item::get_one($id);
         if (!$item) {
             Session::set_flash('error', 'アイテムが見つかりません');
-            return Response::redirect('items');
+            return Response::redirect('shoppingitem/top');
         }
 
         if (Input::method() == 'POST') {
@@ -62,11 +76,11 @@ class Controller_Shoppingitem extends Controller_Template
                 'updated_at'  => date('Y-m-d H:i:s'),
             ));
             Session::set_flash('success', 'アイテムを更新しました');
-            return Response::redirect('items');
+            return Response::redirect('shoppingitem/top');
         }
 
         $this->template->title = 'アイテム編集';
-        $this->template->content = \View::forge('items/edit', ['item' => $item]);
+        $this->template->content = View::forge('shoppingitem/edit', ['item' => $item]);
     }
 
     public function action_delete($id = null)
@@ -75,6 +89,6 @@ class Controller_Shoppingitem extends Controller_Template
             Item::delete_item($id);
             Session::set_flash('success', 'アイテムを削除しました');
         }
-        return Response::redirect('items');
+        return Response::redirect('shoppingitem/top');
     }
 }

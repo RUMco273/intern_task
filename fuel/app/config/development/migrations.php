@@ -6,7 +6,7 @@ return array(
     array(
       'default' => 
       array(
-        0 => '001_create_tables',
+        0 => '20250810123000_create_tables',
       ),
     ),
     'module' => 

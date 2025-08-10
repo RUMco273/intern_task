@@ -28,6 +28,7 @@ class Create_tables
         // 初期データを挿入
         \DB::insert('category')->columns(['name'])->values(['食料品'])->execute();
         \DB::insert('category')->columns(['name'])->values(['生活用品'])->execute();
+        \DB::insert('category')->columns(['name'])->values(['嗜好品'])->execute();
     }
 
     public function down()

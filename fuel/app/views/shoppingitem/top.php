@@ -16,7 +16,7 @@ function ViewModel() {
 
     self.toggleDone = function(item) {
         var newDone = item.done() == 1 ? 0 : 1;
-        fetch('/api/items/done/' + item.id, {
+        fetch('/api/shoppingitem/done/' + item.id, {
             method: 'POST',
             body: JSON.stringify({ done: newDone })
         }).then(() => {
@@ -25,12 +25,12 @@ function ViewModel() {
     };
 
     self.editItem = function(item) {
-        location.href = '/items/edit/' + item.id;
+        location.href = '/shoppingitem/edit/' + item.id;
     };
 
     self.deleteItem = function(item) {
         if (confirm('削除してよろしいですか？')) {
-            fetch('/items/delete/' + item.id)
+            fetch('/shoppingitem/delete/' + item.id)
             .then(() => self.items.remove(item));
         }
     };

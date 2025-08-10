@@ -14,9 +14,9 @@
 
 <h1>買い物リスト</h1>
 <nav>
-    <a href="/items/top">TOP</a>
+    <a href="/shoppingitem/top">TOP</a>
     <?php foreach ($categories as $cat): ?>
-        <a href="/items/category/<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></a>
+        <a href="/shoppingitem/category/<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></a>
     <?php endforeach; ?>
 </nav>
 <hr>

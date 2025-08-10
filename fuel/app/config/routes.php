@@ -2,7 +2,7 @@
 
 return array(
     // デフォルトルート（トップページ）
-    '_root_'  => 'shoppingitem/index',
+    '_root_'  => 'shoppingitem/top',
 
     // トップページ（期限が近いアイテム）
     'shoppingitem/top' => 'shoppingitem/top',
