@@ -31,3 +31,6 @@ WARNING - 2025-06-23 20:58:35 --> Fuel\Core\Fuel::init - The configured locale e
 WARNING - 2025-06-23 21:19:54 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
 ERROR - 2025-06-23 21:19:54 --> Error - syntax error, unexpected '}', expecting ';' in /var/www/html/my_fuel_project/fuel/app/classes/controller/shopping.php on line 15
 WARNING - 2025-06-23 21:20:12 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2025-06-23 22:35:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2025-06-23 22:46:05 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2025-06-23 23:05:18 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
