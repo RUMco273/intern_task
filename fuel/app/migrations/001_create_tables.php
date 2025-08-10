@@ -24,6 +24,10 @@ class Create_tables
 
         // 外部キー追加
         \DB::query("ALTER TABLE items ADD CONSTRAINT fk_items_category FOREIGN KEY (category_id) REFERENCES category(id)")->execute();
+
+        // 初期データを挿入
+        \DB::insert('category')->columns(['name'])->values(['食料品'])->execute();
+        \DB::insert('category')->columns(['name'])->values(['生活用品'])->execute();
     }
 
     public function down()

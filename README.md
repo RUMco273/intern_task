@@ -55,42 +55,12 @@ Dockerの基本的な概念については、以下のリンクを参考にし�
 - **ポート**: `3306`
 - **環境変数**:
   - `MYSQL_ROOT_PASSWORD`: root
-  - `MYSQL_DATABASE`: `rum_database`
+  - `MYSQL_DATABASE`: `RUM_DATA`
 
 ### アクセス情報
 - **ホスト**: `localhost`
 - **ポート**: `3306`
 - **ユーザー名**: `root`
 - **パスワード**: `root`
-- **データベース名**: `rum_database`
+- **データベース名**: `RUM_DATA`
 
-# MVCモデルにおける詳細
-
-## Model
-
-**いじったファイル**
-```
-   fuel/app/classes/model/shopping_model.php
-```
-
-開発時の接続情報は以下のファイルから設定した．
-
-```
-   fuel/app/config/development/db.php
-```
-
-デプロイ時の接続情報は以下のファイルから設定した．
-
-```
-   fuel/app/config/production/db.php
-```
-
-## View
-```
-   fuel/app/views/shopping
-```
-
-## Controller
-```
-   fuel/app/classes/controller/shopping_controller.php
-```

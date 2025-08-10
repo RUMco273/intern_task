@@ -1,6 +1,5 @@
 <?php
 
-namespace Controller;
 
 use Fuel\Core\Controller_Template;
 use Fuel\Core\Input;
@@ -9,7 +8,7 @@ use Fuel\Core\Session;
 use Model\Category;
 use Model\Item;
 
-class Items extends Controller_Template
+class Controller_Shoppingitem extends Controller_Template
 {
     public $template = 'template';
 

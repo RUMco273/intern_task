@@ -8,7 +8,7 @@ return array(
 		'type'        => 'mysqli',
 		'connection'  => array(
 			'hostname'   => 'db',
-			'database'   => 'rum_database',
+			'database'   => 'RUM_DATA',
 			'username'   => 'root',
 			'password'   => 'root',
 			'persistent' => false,

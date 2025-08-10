@@ -19,7 +19,7 @@ services:
       dockerfile: docker/db/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: rum_database
+      MYSQL_DATABASE: RUM_DATA
     ports:
       - "3306:3306"
     networks:
