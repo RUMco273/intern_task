@@ -1,8 +1,8 @@
-<?php use Fuel\Core\Security; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="csrf-token" content="<?php echo \Security::fetch_token(); ?>">
 <title><?php echo $title; ?></title>
 <script src="https://cdn.jsdelivr.net/npm/knockout@3.5.1/build/output/knockout-latest.js"></script>
 <style>

@@ -24,4 +24,7 @@ return array(
 
     // 404エラー時
     '_404_'   => 'welcome/404',
+
+    // アイテムの完了状態を切り替える (POSTリクエスト)
+    'shoppingitem/toggledone' => 'shoppingitem/toggledone',
 );

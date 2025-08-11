@@ -91,11 +91,56 @@ class Controller_ShoppingItem extends Controller_Template
     }
 
     public function action_delete($id = null)
-    {
-        if ($id) {
-            Item::delete_item($id);
-            Session::set_flash('success', 'アイテムを削除しました');
-        }
-        return Response::redirect('shoppingitem/top');
+{
+    // AJAXリクエストか判定
+    if (Input::is_ajax() && $id) {
+        Item::delete_item($id);
+        // 新しいトークンを添えて、JSONで成功レスポンスを返す
+        return Response::forge(json_encode([
+            'status' => 'ok',
+            'new_token' => \Security::fetch_token()
+        ]), 200, ['Content-Type' => 'application/json']);
     }
+
+    // AJAXでない場合やIDがない場合は、エラーとするかトップにリダイレクトする
+    if ($id) {
+        Item::delete_item($id);
+        Session::set_flash('success', 'アイテムを削除しました');
+    }
+    return Response::redirect('shoppingitem/top');
+}
+
+public function action_toggledone()
+{
+    // AJAXリクエストでなければ処理しない
+    if (!Input::is_ajax()) {
+        return Response::forge('Bad Request', 400);
+    }
+
+    $id = Input::post('id');
+    $done_input = Input::post('done'); // JSからは 'true'/'false' または 1/0 が送られてくる
+
+    if ($id !== null && $done_input !== null) {
+        
+        // 送られてきた値を確実に 1 か 0 に変換する
+        $done = ($done_input === 'true' || $done_input == 1) ? 1 : 0;
+
+        Item::update_item($id, array(
+            'done'       => $done,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ));
+        
+        // JSONレスポンスに、次のリクエストで使うための「新しいトークン」を含める
+        return Response::forge(json_encode([
+            'status' => 'ok',
+            'new_token' => \Security::fetch_token()
+        ]), 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
+
+    return Response::forge(json_encode(['status' => 'error', 'message' => 'Invalid input.']), 400, [
+        'Content-Type' => 'application/json'
+    ]);
+}
 }
