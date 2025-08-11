@@ -1,5 +1,6 @@
 <h2>◆アイテム編集</h2>
 <form method="post" onsubmit="return confirmLeave()">
+    <input type="hidden" name="fuel_csrf_token" value="<?php echo \Security::fetch_token(); ?>">
     名前: <input type="text" name="name" value="<?php echo $item['name']; ?>" required><br>
     個数: <input type="number" name="num" value="<?php echo $item['num']; ?>"  min="1" required><br>
     購入期限: <input type="date" name="due_date" value="<?php echo $item['due_date']; ?>" required><br>

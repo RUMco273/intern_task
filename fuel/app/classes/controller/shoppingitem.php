@@ -5,8 +5,10 @@ use Fuel\Core\Input;
 use Fuel\Core\Response;
 use Fuel\Core\Session;
 use Fuel\Core\View;
+use Fuel\Core\Security;
 use Model\Category;
 use Model\Item;
+
 
 class Controller_ShoppingItem extends Controller_Template
 {
@@ -29,7 +31,7 @@ class Controller_ShoppingItem extends Controller_Template
     {
         $data['category_name'] = '';
         foreach ($this->template->categories as $cat) {
-            if ($cat['id'] == $id) {
+            if ($cat['id'] === $id) {
                 $data['category_name'] = $cat['name'];
                 break;
             }
@@ -41,7 +43,7 @@ class Controller_ShoppingItem extends Controller_Template
 
     public function action_create()
     {
-        if (Input::method() == 'POST') {
+        if (Input::method() === 'POST') {
             Item::create(array(
                 'category_id' => Input::post('category_id'),
                 'name'        => Input::post('name'),
@@ -68,7 +70,7 @@ class Controller_ShoppingItem extends Controller_Template
             return Response::redirect('shoppingitem/top');
         }
 
-        if (Input::method() == 'POST') {
+        if (Input::method() === 'POST') {
             Item::update_item($id, array(
                 'category_id' => Input::post('category_id'),
                 'name'        => Input::post('name'),

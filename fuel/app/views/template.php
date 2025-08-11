@@ -1,3 +1,4 @@
+<?php use Fuel\Core\Security; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
