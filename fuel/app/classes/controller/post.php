@@ -5,6 +5,6 @@ class Controller_Post extends Controller{
         $data = array();
         $data['rows'] = Model_Post::find_all();
 
-        return View::forge('shopping/list')
+        return View::forge('shopping/list');
     }
 }

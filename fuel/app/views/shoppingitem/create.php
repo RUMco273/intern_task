@@ -1,7 +1,7 @@
 <h2>◆アイテム追加</h2>
 <form method="post" onsubmit="return confirmLeave()">
     名前: <input type="text" name="name" required><br>
-    個数: <input type="number" name="num" required><br>
+    個数: <input type="number" name="num" min="1" required><br>
     購入期限: <input type="date" name="due_date" required><br>
     カテゴリ:
     <select name="category_id">

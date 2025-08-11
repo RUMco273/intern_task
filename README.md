@@ -73,3 +73,10 @@ Dockerの基本的な概念については、以下のリンクを参考にし�
 - app/views/template.php
 - app/views/shoppingitem
 
+## 使用コマンド
+
+- docker-compose up -d
+- docker ps      
+- docker exec -it docker-db-1 bash
+- mysql -u root -p
+- docker exec -it fuelphp-app bash

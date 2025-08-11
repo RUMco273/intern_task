@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title><?php echo $title; ?></title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/knockout@3.5.1/build/output/knockout-latest.js"></script>
 <style>
     body { font-family: sans-serif; margin: 20px; }
     nav a { margin-right: 10px; }
@@ -19,7 +19,21 @@
         <a href="/shoppingitem/category/<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></a>
     <?php endforeach; ?>
 </nav>
+<button onclick="location.href='/shoppingitem/create'">追加</button>
 <hr>
+
+<?php if (\Fuel\Core\Session::get_flash('success')): ?>
+    <div style="color: green; border: 1px solid green; padding: 5px; margin-bottom: 10px;">
+        <?php echo \Fuel\Core\Session::get_flash('success'); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (\Fuel\Core\Session::get_flash('error')): ?>
+    <div style="color: red; border: 1px solid red; padding: 5px; margin-bottom: 10px;">
+        <?php echo \Fuel\Core\Session::get_flash('error'); ?>
+    </div>
+<?php endif; ?>
+
 
 <div>
     <?php echo $content; ?>

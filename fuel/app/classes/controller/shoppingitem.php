@@ -55,7 +55,9 @@ class Controller_ShoppingItem extends Controller_Template
             return Response::redirect('shoppingitem/top');
         }
         $this->template->title = 'アイテム追加';
-        $this->template->content = View::forge('shoppingitem/create');
+        $this->template->content = \View::forge('shoppingitem/create', [
+            'categories' => $this->template->categories
+        ]);
     }
 
     public function action_edit($id = null)
@@ -80,7 +82,10 @@ class Controller_ShoppingItem extends Controller_Template
         }
 
         $this->template->title = 'アイテム編集';
-        $this->template->content = View::forge('shoppingitem/edit', ['item' => $item]);
+        $this->template->content = \View::forge('shoppingitem/edit', [
+            'item'       => $item,
+            'categories' => $this->template->categories
+        ]);
     }
 
     public function action_delete($id = null)
