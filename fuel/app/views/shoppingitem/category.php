@@ -7,17 +7,20 @@
 <h2 data-bind="if: items().length == 0" style="color: gray;">アイテムはありません。</h2>
 
 <ul data-bind="foreach: filteredItems">
-    <li data-bind="css: { done: done() == 1 }">
-        <input type="checkbox" data-bind="checked: done" style="margin-right: 5px;">
-        <span data-bind="text: name"></span>
+    <li data-bind="css: { done: done() }">
+    <input type="checkbox" data-bind="checked: done">
+    <span class="item-name" data-bind="text: name"></span>
+    <span class="item-details">
         (個数: <span data-bind="text: num"></span>)
         <span data-bind="text: due_date"></span>
-
-        <button data-bind="click: $parent.editItem" style="margin-left: 10px;">編集</button>
-        <button data-bind="click: $parent.removeItem">削除</button>
-    </li>
+    </span>
+    <div class="item-actions">
+        <button data-bind="click: $parent.editItem">✏️</button>
+        <button data-bind="click: $parent.removeItem">🗑️</button>
+    </div>
+</li>
 </ul>
-
+<button class="primary-action btn-add" onclick="location.href='/shoppingitem/create'">追加</button>
 <script>
 function AppViewModel() {
     var self = this;

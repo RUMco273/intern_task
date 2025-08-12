@@ -1,0 +1,209 @@
+/* style.css */
+
+/* =========================================
+   全体的なスタイルとタイポグラフィ (基本設定)
+   ========================================= */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* すべての要素でボーダーとパディングの計算を簡単に*/
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   ヘッダー、ナビゲーション、タイトル
+   ========================================= */
+
+/* ヘッダー全体をFlexboxで管理 */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap; /* 画面が狭い時に折り返す */
+}
+
+/* 「買い物リスト」のメインタイトル */
+h1 {
+    font-size: 28px;
+    margin: 0;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #3498db;
+}
+
+/* 「・期限が近いアイテム」などのサブタイトル */
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #34495e;
+    width: 100%; /* タイトルは常に全幅を確保 */
+    margin: 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+}
+
+/* 水平線 */
+hr {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 20px 0;
+}
+
+
+/* =========================================
+   ボタンの共通スタイル
+   ========================================= */
+
+/* 「追加」「確定」ボタン */
+button.primary-action {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button.primary-action:hover {
+    background-color: #2980b9;
+}
+
+.btn-add {
+    margin: 20px 20px 0px 0px;
+}
+
+
+/* =========================================
+   アイテムリストのスタイル
+   ========================================= */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 各リストアイテム */
+li {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.2s ease;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:hover {
+    background-color: #fdfdfd;
+}
+
+/* チェックボックス */
+li input[type="checkbox"] {
+    margin-right: 15px;
+    /* チェックボックスを少し大きく見やすくする */
+    transform: scale(1.3);
+}
+
+/* アイテム名 */
+li .item-name {
+    font-weight: 500;
+}
+
+/* 個数や日付など */
+li .item-details {
+    margin-left: 15px;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* 編集・削除ボタンのコンテナ */
+.item-actions {
+    margin-left: auto; /* これで右端に寄せる */
+    display: flex;
+    align-items: center;
+}
+
+/* 編集・削除ボタン */
+.item-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* アイコンのサイズ */
+    padding: 5px;
+    color: #95a5a6;
+    transition: color 0.2s ease;
+}
+
+.item-actions button:hover {
+    color: #34495e;
+}
+
+
+/* 購入済みアイテム（done=1）のスタイル */
+li.done {
+    background-color: #f8f9f9;
+}
+
+li.done .item-name,
+li.done .item-details {
+    text-decoration: line-through;
+    color: #bdc3c7;
+}
+
+
+/* =========================================
+   フォームのスタイル (追加・編集ページ)
+   ========================================= */
+
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 5px;
+    border: 1px solid #ecf0f1;
+}
+
+/* フォーム内の各入力項目 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* テキスト入力、数値入力、日付、セレクトボックスの共通スタイル */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3498db;
+    outline: none;
+}
