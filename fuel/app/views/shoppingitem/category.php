@@ -3,11 +3,12 @@
     var initialItems = <?php echo json_encode($items); ?>;
 </script>
 
+<button data-bind="click: toggleShowCompleted, text: showCompletedText" style="margin-bottom: 15px;"></button>
 <h2 data-bind="if: items().length == 0" style="color: gray;">アイテムはありません。</h2>
 
-<ul data-bind="foreach: items">
+<ul data-bind="foreach: filteredItems">
     <li data-bind="css: { done: done() == 1 }">
-        <input type="checkbox" data-bind="checked: done, checkedValue: 1" style="margin-right: 5px;">
+        <input type="checkbox" data-bind="checked: done" style="margin-right: 5px;">
         <span data-bind="text: name"></span>
         (個数: <span data-bind="text: num"></span>)
         <span data-bind="text: due_date"></span>
@@ -73,6 +74,32 @@ function AppViewModel() {
     self.items = ko.observableArray(ko.utils.arrayMap(initialItems, function(item) {
         return new ItemViewModel(item);
     }));
+
+    // 1. 購入済みアイテムの表示状態を管理 (初期値: false)
+    self.showCompleted = ko.observable(false);
+
+    // 2. 表示状態に応じてリストをフィルタリングする「算出プロパティ」
+    self.filteredItems = ko.computed(function() {
+        if (!self.showCompleted()) {
+            // "showCompleted"がfalseなら、"done"がfalseのアイテムだけを返す
+            return ko.utils.arrayFilter(self.items(), function(item) {
+                return !item.done();
+            });
+        } else {
+            // "showCompleted"がtrueなら、全アイテムをそのまま返す
+            return self.items();
+        }
+    });
+
+    // ボタンのテキストを動的に変更するための算出プロパティ
+    self.showCompletedText = ko.computed(function() {
+        return self.showCompleted() ? '購入した商品を隠す' : '購入した商品を表示';
+    });
+
+    // ボタンがクリックされたときに"showCompleted"の状態を反転させる関数
+    self.toggleShowCompleted = function() {
+        self.showCompleted(!self.showCompleted());
+    };
 
     self.editItem = function(item) {
         location.href = '/shoppingitem/edit/' + item.id();
